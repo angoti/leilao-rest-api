@@ -34,6 +34,8 @@ public class ItemDeLeilaoService {
 		entity.setId(id);
 		return repository.save(entity);
 	}
+	
+	public void registrarLance() {}
 
 }
 
