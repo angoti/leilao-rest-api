@@ -23,12 +23,12 @@ public class ParticipanteController {
 	private ParticipanteService service;
 
 	@GetMapping("/{id}")
-	public Participante lance(@PathVariable Integer id) {
+	public Participante participante(@PathVariable Integer id) {
 		return service.findById(id);
 	}
 
 	@GetMapping
-	public List<Participante> lances() {
+	public List<Participante> participantes() {
 		return service.todos();
 	}
 

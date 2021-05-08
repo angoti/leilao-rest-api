@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.professorangoti.leilao.domain.ItemDeLeilao;
+import com.professorangoti.leilao.domain.Lance;
 import com.professorangoti.leilao.service.ItemDeLeilaoService;
 
 @RestController
@@ -45,5 +47,16 @@ public class ItemDeLeilaoController {
 	@PutMapping("/{id}")
 	public ItemDeLeilao atualiza(@PathVariable Integer id, @RequestBody ItemDeLeilao entity) {
 		return service.atualiza(id, entity);
+	}
+	
+	
+	@PostMapping("/{id}")
+	public ItemDeLeilao registraLance(@PathVariable Integer id, @RequestBody Lance lance) {
+		return service.registrarLance(id, lance);
+	}
+	
+	@PatchMapping("/{id}")
+	public Lance encerra(@PathVariable Integer id) {
+		return service.atualiza(id);
 	}
 }

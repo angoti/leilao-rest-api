@@ -22,10 +22,11 @@ public class ItemDeLeilao implements Serializable {
 	private Integer id;
 	private String nome;
 	private double valorMinimo;
-	private boolean leilaoAberto;
+	private Boolean leilaoAberto;
 
 	@OneToOne
 	private Lance lanceVencedor;
 	@OneToMany
 	private List<Lance> lancesRecebidos = new ArrayList<Lance>();
+	
 }
