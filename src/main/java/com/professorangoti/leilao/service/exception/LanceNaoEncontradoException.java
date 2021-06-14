@@ -1,4 +1,4 @@
-package com.professorangoti.leilao.service;
+package com.professorangoti.leilao.service.exception;
 
 public class LanceNaoEncontradoException extends RuntimeException {
 

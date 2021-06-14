@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.professorangoti.leilao.domain.Lance;
 import com.professorangoti.leilao.repository.LanceRepository;
+import com.professorangoti.leilao.service.exception.LanceNaoEncontradoException;
 
 @Service
 public class LanceService {

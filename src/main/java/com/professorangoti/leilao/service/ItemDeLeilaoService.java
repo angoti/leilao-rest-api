@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import com.professorangoti.leilao.domain.ItemDeLeilao;
 import com.professorangoti.leilao.domain.Lance;
 import com.professorangoti.leilao.repository.ItemDeLeilaoRepository;
+import com.professorangoti.leilao.service.exception.LanceNaoEncontradoException;
+import com.professorangoti.leilao.service.exception.LeilaoEncerradoException;
 
 @Service
 public class ItemDeLeilaoService {

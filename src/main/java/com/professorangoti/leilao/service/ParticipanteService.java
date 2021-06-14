@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.professorangoti.leilao.domain.Participante;
 import com.professorangoti.leilao.repository.ParticipanteRepository;
+import com.professorangoti.leilao.service.exception.ParticipanteNaoEncontradoException;
 
 @Service
 public class ParticipanteService {
@@ -15,7 +16,8 @@ public class ParticipanteService {
 	private ParticipanteRepository repository;
 
 	public Participante findById(Integer id) {
-		return repository.findById(id).orElseThrow(() -> new LanceNaoEncontradoException(id));
+		return repository.findById(id).
+				orElseThrow(() -> new ParticipanteNaoEncontradoException(id));
 	}
 
 	public List<Participante> todos() {
