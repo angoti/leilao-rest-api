@@ -35,6 +35,7 @@ public class LanceService {
 		entity.setId(id);
 		return repository.save(entity);
 	}
+	
 
 }
 

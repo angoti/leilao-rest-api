@@ -50,7 +50,7 @@ public class ItemDeLeilaoController {
 	}
 	
 	
-	@PostMapping("/{id}")
+	@PostMapping("/{id}/lance")
 	public ItemDeLeilao registraLance(@PathVariable Integer id, @RequestBody Lance lance) {
 		return service.registrarLance(id, lance);
 	}
