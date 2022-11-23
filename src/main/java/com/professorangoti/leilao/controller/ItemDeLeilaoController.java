@@ -3,6 +3,8 @@ package com.professorangoti.leilao.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -25,18 +27,18 @@ public class ItemDeLeilaoController {
 	private ItemDeLeilaoService service;
 
 	@GetMapping("/{id}")
-	public ItemDeLeilao lance(@PathVariable Integer id) {
-		return service.findById(id);
+	public ResponseEntity<ItemDeLeilao> lance(@PathVariable Integer id) {
+		return ResponseEntity.status(HttpStatus.OK).body(service.findById(id));
 	}
 
 	@GetMapping
-	public List<ItemDeLeilao> lances() {
-		return service.todos();
+	public ResponseEntity<List<ItemDeLeilao>> lances() {
+		return ResponseEntity.status(HttpStatus.OK).body(service.todos());
 	}
 
 	@PostMapping
-	public ItemDeLeilao novo(@RequestBody ItemDeLeilao entity) {
-		return service.save(entity);
+	public ResponseEntity<ItemDeLeilao> novo(@RequestBody ItemDeLeilao entity) {
+		return ResponseEntity.status(HttpStatus.OK).body(service.save(entity));
 	}
 
 	@DeleteMapping("/{id}")
@@ -45,18 +47,18 @@ public class ItemDeLeilaoController {
 	}
 
 	@PutMapping("/{id}")
-	public ItemDeLeilao atualiza(@PathVariable Integer id, @RequestBody ItemDeLeilao entity) {
-		return service.atualiza(id, entity);
+	public ResponseEntity<ItemDeLeilao> atualiza(@PathVariable Integer id, @RequestBody ItemDeLeilao entity) {
+		return ResponseEntity.status(HttpStatus.OK).body(service.atualiza(id, entity));
 	}
 	
 	
-	@PostMapping("/{id}/lance")
-	public ItemDeLeilao registraLance(@PathVariable Integer id, @RequestBody Lance lance) {
-		return service.registrarLance(id, lance);
+	@PostMapping("/{id}")
+	public ResponseEntity<ItemDeLeilao> registraLance(@PathVariable Integer id, @RequestBody Lance lance) {
+		return ResponseEntity.status(HttpStatus.OK).body(service.registrarLance(id, lance));
 	}
 	
 	@PatchMapping("/{id}")
-	public Lance encerra(@PathVariable Integer id) {
-		return service.atualiza(id);
+	public ResponseEntity<Lance> encerra(@PathVariable Integer id) {
+		return ResponseEntity.status(HttpStatus.OK).body(service.atualiza(id));
 	}
 }

@@ -1,6 +1,5 @@
 package com.professorangoti.leilao.security;
 
-
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
 
@@ -59,7 +58,7 @@ public class ConfigurationOAuth2 {
                 User.withDefaultPasswordEncoder()
                         .username("teste-a")
                         .password("123456")
-                        .authorities("USER","ADMIN")
+                        .authorities("USER", "ADMIN")
                         .build());
     }
 

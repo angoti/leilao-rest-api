@@ -5,6 +5,8 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.professorangoti.leilao.controller.exception.ErradoException;
 import com.professorangoti.leilao.domain.Participante;
 import com.professorangoti.leilao.service.ParticipanteService;
 
@@ -26,19 +27,18 @@ public class ParticipanteController {
 	private ParticipanteService service;
 
 	@GetMapping("/{id}")
-	public Participante participante(@PathVariable Integer id) {
-		return service.findById(id);
+	public ResponseEntity<Participante> participante(@PathVariable Integer id) {
+		return ResponseEntity.status(HttpStatus.OK).body(service.findById(id));
 	}
 
 	@GetMapping
-	public List<Participante> participantes() {
-		//return new ResponseEntity<List<Participante>>(service.todos(),HttpStatus.OK);
-		return service.todos();
+	public ResponseEntity<List<Participante>> participantes() {
+		return ResponseEntity.status(HttpStatus.OK).body(service.todos());
 	}
 
 	@PostMapping
-	public Participante novo(@RequestBody @Valid Participante entity) {
-		return service.save(entity);
+	public ResponseEntity<Participante> novo(@RequestBody @Valid Participante entity) {
+		return ResponseEntity.status(HttpStatus.OK).body(service.save(entity));
 	}
 
 	@DeleteMapping("/{id}")
@@ -47,12 +47,8 @@ public class ParticipanteController {
 	}
 
 	@PutMapping("/{id}")
-	public Participante atualiza(@PathVariable Integer id, @RequestBody Participante entity) {
-		return service.atualiza(id, entity);
+	public ResponseEntity<Participante> atualiza(@PathVariable Integer id, @RequestBody Participante entity) {
+		return ResponseEntity.status(HttpStatus.OK).body(service.atualiza(id, entity));
 	}
 	
-	@GetMapping("/errado")
-	public void errado() {
-		throw new ErradoException("teste de mensagem");
-	}
 }

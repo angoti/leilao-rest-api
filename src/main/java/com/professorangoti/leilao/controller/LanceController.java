@@ -6,6 +6,8 @@ import com.professorangoti.leilao.domain.Lance;
 import com.professorangoti.leilao.service.LanceService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,13 +24,13 @@ public class LanceController {
 	private LanceService service;
 
 	@GetMapping("/{id}")
-	public Lance lance(@PathVariable Integer id) {
-		return service.findById(id);
+	public ResponseEntity<Lance> lance(@PathVariable Integer id) {
+		return ResponseEntity.status(HttpStatus.OK).body(service.findById(id));
 	}
 
 	@GetMapping
-	public List<Lance> lances() {
-		return service.todos();
+	public ResponseEntity<List<Lance>> lances() {
+		return ResponseEntity.status(HttpStatus.OK).body(service.todos());
 	}
 
 	@DeleteMapping("/{id}")
@@ -37,8 +39,8 @@ public class LanceController {
 	}
 
 	@PutMapping("/{id}")
-	public Lance atualiza(@PathVariable Integer id, @RequestBody Lance entity) {
-		return service.atualiza(id, entity);
+	public ResponseEntity<Lance> atualiza(@PathVariable Integer id, @RequestBody Lance entity) {
+		return ResponseEntity.status(HttpStatus.OK).body(service.atualiza(id, entity));
 	}
 }
 
