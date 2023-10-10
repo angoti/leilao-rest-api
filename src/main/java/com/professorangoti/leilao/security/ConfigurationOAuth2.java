@@ -37,18 +37,29 @@ public class ConfigurationOAuth2 {
     @Value("${jwt.private.key}")
     RSAPrivateKey priv;
 
+    // @Bean
+    // public SecurityFilterChain securityFilterChain(HttpSecurity http) throws
+    // Exception {
+    // http
+    // .authorizeHttpRequests((authorize) -> authorize
+    // .anyRequest().authenticated())
+    // .csrf((csrf) -> csrf.ignoringAntMatchers("/token"))
+    // .httpBasic(Customizer.withDefaults())
+    // .oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt)
+    // .sessionManagement((session) ->
+    // session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+    // .exceptionHandling((exceptions) -> exceptions
+    // .authenticationEntryPoint(new BearerTokenAuthenticationEntryPoint())
+    // .accessDeniedHandler(new BearerTokenAccessDeniedHandler()));
+    // return http.build();
+    // }
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests((authorize) -> authorize
-                        .anyRequest().authenticated())
-                .csrf((csrf) -> csrf.ignoringAntMatchers("/token"))
-                .httpBasic(Customizer.withDefaults())
-                .oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt)
-                .sessionManagement((session) -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .exceptionHandling((exceptions) -> exceptions
-                        .authenticationEntryPoint(new BearerTokenAuthenticationEntryPoint())
-                        .accessDeniedHandler(new BearerTokenAccessDeniedHandler()));
+                        .anyRequest().permitAll())
+                .csrf((csrf) -> csrf.disable());
         return http.build();
     }
 
